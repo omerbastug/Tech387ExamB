@@ -31,7 +31,7 @@ def home():
 
         day['appointments'].append({
             "name" : ap.fullName,
-            "time" : ap.time.strftime("%X"),
+            "time" : ap.time.strftime("%H:%M"),
             "issue" : ap.issue,
             'date' : ap.time,
             "ppSrc": ap.profilePictureLink

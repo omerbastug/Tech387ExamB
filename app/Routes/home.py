@@ -28,9 +28,9 @@ def home():
             day={}
             day['heading'] = ap.time.strftime("%A")
             day['appointments'] = []
-
+        i = ap.fullName.find(" ")
         day['appointments'].append({
-            "name" : ap.fullName,
+            "name" : ap.fullName[:(i+2)]+".",
             "time" : ap.time.strftime("%H:%M"),
             "issue" : ap.issue,
             'date' : ap.time,

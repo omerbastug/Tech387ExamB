@@ -35,4 +35,4 @@ with app.app_context():
 
 
 from app.API import register
-from app.Routes import home, login, loginLogo, logout, test
+from app.Routes import home, login, loginLogo, logout

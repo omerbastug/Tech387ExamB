@@ -1,12 +1,13 @@
 from app import app,db
 from flask import jsonify, request
-from app.Models.User import User
+from app.Models.Patient import Patient
+
 
 @app.route("/api/register", methods=["POST"])
 def register():
     body = request.get_json()
     try:
-        newuser = User(fullName=body['fullname'],email=body['email'],password = body['password'], prefix = body.get("preferredTitle"),userCategoryId=1)
+        newuser = Patient(fullName=body['fullname'],email=body['email'],password = body['password'], prefix = body.get("preferredTitle"))
         db.session.add(newuser)
         db.session.commit()
         respUser = newuser.as_dict()

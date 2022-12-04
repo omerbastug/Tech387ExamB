@@ -15,6 +15,7 @@ def home():
                         .join(User, User.id == Appointment.patientId)\
                         .filter(Appointment.time > x, Appointment.doctorId == current_user.id)\
                         .add_columns(Appointment.time,Appointment.issue,User.fullName, User.profilePictureLink)\
+                        .order_by(Appointment.time)\
                         .all()
 
     days  = [] # response object

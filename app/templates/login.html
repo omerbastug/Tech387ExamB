@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link href="https://fonts.cdnfonts.com/css/outfit" rel="stylesheet">
+                
     <style>
         html,body {
             height: 100vh;
@@ -21,6 +23,7 @@
             align-items: center;
             flex-direction: column;
             max-width: 600px;
+            font-family: 'Outfit';
         }
         img{
             margin: 40px;
@@ -91,7 +94,7 @@
             {% with messages = get_flashed_messages(with_categories = true) %}
               {% if messages %}
                 {% for key, message in messages %}
-                <div style="color: red;">
+                <div style="color:  #A82522;">
                     <div>
                       {{ message }}
                     </div>
@@ -103,5 +106,20 @@
         </div>
     </form>
 
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 </body>
+    {% with messages = get_flashed_messages(with_categories = true) %}
+        {% if messages %}
+        {% for key, message in messages %}
+            {% if key == 'incorrectPassword' %}
+            <script>
+                console.log("incorrectpassword")
+                $("input").css("border-bottom",'1px solid  #A82522')
+                $("input").css("background-color",'#EFEFF4')
+
+            </script>
+            {%endif %}
+        {% endfor %}
+        {% endif %}
+    {% endwith %}
 </html>

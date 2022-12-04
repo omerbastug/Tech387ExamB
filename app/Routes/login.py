@@ -15,7 +15,7 @@ def login_redirect():
         user = User.query.filter_by(email=body.get("email")).first()
         if not user:
             # log 
-            flash("Pogresan e-mail ili password", category="danger")
+            flash("Pogresan e-mail ili password", category="incorrectPassword")
             return redirect(url_for('login_page'))
 
         if not user.truePassword(body.get('password')):

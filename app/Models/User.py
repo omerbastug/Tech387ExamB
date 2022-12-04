@@ -39,3 +39,6 @@ class User(db.Model,UserMixin):
         userhash = self.hash.encode('utf-8')
 
         return hash == userhash
+
+    def as_dict(self):
+       return {c.name: getattr(self, c.name) for c in self.__table__.columns}

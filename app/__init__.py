@@ -34,5 +34,5 @@ with app.app_context():
     db.create_all()
 
 
-# from flaskapp.API import createMeme, getTheLatestMeme, greeting, login, register, randomMeme, getUsers
+from app.API import register
 from app.Routes import home, login, loginLogo, logout, test

@@ -10,7 +10,7 @@ class User(db.Model,UserMixin):
     hash = db.Column(db.String(length=64), nullable=False)
     salt = db.Column(db.String(length=64), nullable=False)
     userCategoryId = db.Column(db.Integer(), db.ForeignKey("user_category.id"), nullable=False)
-    profilePictureLink = db.Column(db.String(length=250), nullable=True)
+    profilePictureLink = db.Column(db.String(length=250), nullable=True, default='https://www.kindpng.com/picc/m/22-223965_no-profile-picture-icon-circle-member-icon-png.png')
     prefix = db.Column(db.String(length=15), nullable=True)
 
     @property

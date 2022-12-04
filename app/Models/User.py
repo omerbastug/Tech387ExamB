@@ -10,6 +10,8 @@ class User(db.Model,UserMixin):
     hash = db.Column(db.String(length=64), nullable=False)
     salt = db.Column(db.String(length=64), nullable=False)
     userCategoryId = db.Column(db.Integer(), db.ForeignKey("user_category.id"), nullable=False)
+    profilePictureLink = db.Column(db.String(length=250), nullable=True)
+    prefix = db.Column(db.String(length=15), nullable=True)
 
     @property
     def password(self):
@@ -22,6 +24,11 @@ class User(db.Model,UserMixin):
         hash = bcrypt.hashpw(bytepassword, salt)
         self.hash = hash
         self.salt = salt
+    
+    @property
+    def title(self):
+        return self.prefix+ " " + self.fullName
+
 
     def truePassword(self, passwordToCheck):
         bytepassword = passwordToCheck.encode('utf-8')

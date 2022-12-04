@@ -4,10 +4,107 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        html,body {
+            height: 100vh;
+            background-color: #fff;
+        }
+        html{
+            align-items: center;
+        }
+        body{
+            max-width: 600px;
+            margin: 0px auto;
+        }
+        header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            max-width: 600px;
+            z-index: 100;
+            background: #fff;
+        }
+        header *{
+            margin: 1rem;    
+        }
+        #profileContainer{
+            position: relative;
+            top: 68px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        #profileContainer > div:nth-child(1) > img {
+            width: 80px;
+            margin: 1rem;
+        }
+        .appointment{
+            display: flex;
+            align-items: center;
+        }
+        .appointment img{
+            margin: 1rem;
+        }
+        .appointmentsWrapper{
+            margin-top: 100px;
+        }
+        .appDesc{
+            display: flex;
+        }
+        .appText p{
+            margin: 0  1rem;
+        }
+        .day h3{
+            margin: 0 1rem
+        }
+    </style>
+
 </head>
+
 <body>
-    <h1>helloo</h1>    
-    <a href="{{url_for('logout')}}"> logout</a>
+    {% block header %}
+        <header>
+            <img src="{{ url_for('login_logo') }}" style="width: 40%;" alt="">
+            <i class="fa fa-sign-out" aria-hidden="true" style="width: 5%;"></i>
+        </header>
+    {% endblock %}
+    {% block user%}
+        <div id="profileContainer">
+            <div>
+                <img src="{{ current_user.profilePictureLink }} " alt="">
+            </div>
+            <div>
+                <p>My Profile</p>
+                <p>{{current_user.title}}</p>
+            </div>
+        </div>
+    {% endblock %}
+    {% block scrollable %}
+        <div class="appointmentsWrapper">
+        {%for day in days %}
+            <div class="day">
+                <h3 > {{day['heading']}} </h1>
+                <div class="dayWrapper">
+                    {% for ap in day['appointments'] %}
+                        <div class="appointment">
+                            <img src="{{ap['ppSrc']}}" style="width: 40px;" alt="">
+                            <div class="appText">
+                                <p>{{ap['name']}}</p>
+                                <div class="appDesc">
+                                    <p>{{ap['time']}}</p>
+                                    <p>{{ap['issue']}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    {% endblock %}
 </body>
 </html>

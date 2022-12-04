@@ -35,4 +35,4 @@ with app.app_context():
 
 
 # from flaskapp.API import createMeme, getTheLatestMeme, greeting, login, register, randomMeme, getUsers
-from app.Routes import home, login, loginLogo, logout
+from app.Routes import home, login, loginLogo, logout, test
